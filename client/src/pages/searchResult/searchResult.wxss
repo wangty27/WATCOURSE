@@ -1,12 +1,16 @@
 /* pages/searchResult/searchResult.wxss */
 .result-header{
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  background: #ffd54f
+  background: #ffd54f;
+  border-bottom: 0.5vw solid rgb(16, 109, 216);
+  box-shadow: 0 0.5vw 0.5vw #111111;
+  z-index: 100;
 }
 
 .header-code{
-  height: 5vh;
+  height: 4.5vh;
   width: 100vw;
   font-size: 3.5vh;
   display: flex;
@@ -15,20 +19,18 @@
   font-weight: bold;
 }
 
-.header-title{
-  height: 3vh;
+.header-text{
+  height: 2.2vh;
   width: 100vw;
-  font-size: 1.7vh;
+  font-size: 1.8vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  border-bottom: 0.5vw solid rgb(16, 109, 216);
-  box-shadow: 0 0.5vw 0.5vw #111111;
-  z-index: 100;
 }
 
+
 .result-list{
-  height: 92vh;
+  height: 84.5vh;
   width: 98vw;
   font-size: 2.1vh;
 }
@@ -49,13 +51,15 @@
   display: flex;
   flex-direction: row;
   /* border: 1rpx solid blue; */
-  margin-bottom: 0.5vh;
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
 }
 
 .item-class-list{
   padding: 1.5vw;
   border: 2rpx solid rgb(16, 109, 216);
-  margin-top: 0.5vh;
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
 }
 
 .item-weekday{
@@ -84,4 +88,13 @@
   align-items: center;
   justify-content: center;
   border-right: 0.001rpx solid transparent;
+}
+
+.item-reserve-list {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5vw;
+  border: 2rpx solid rgb(16, 109, 216);
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
 }

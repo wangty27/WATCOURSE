@@ -4,6 +4,7 @@ const app = getApp();
 
 Page({
   data: {
+    searchError: false
   },
 
   onLoad: function () {
@@ -14,6 +15,7 @@ Page({
   },
 
   searchSubmit: function() {
+    let _this = this;
     wx.cloud.callFunction({
       name: 'courselookup',
       data: {
@@ -22,11 +24,16 @@ Page({
     }).then(function (res) {
       if (!res.result.error) {
         app.globalData.searchResult = res.result;
+        _this.setData({
+          searchError: false
+        })
         wx.navigateTo({
           url: '../searchResult/searchResult',
         })
       } else {
-        console.log('error');
+        _this.setData({
+          searchError: true
+        })
       }
     });
     // wx.navigateTo({

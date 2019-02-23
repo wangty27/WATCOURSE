@@ -5,6 +5,7 @@
   </view>
   <view class="search">
     <input class="search-input" bindinput='searchTermUpdate' />
+    <view wx:if="{{searchError}}" style="color: red;">Error</view>
     <button class="search-submit" bindtap='searchSubmit'>Search</button>
   </view>
 </view>

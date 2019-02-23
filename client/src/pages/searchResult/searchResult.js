@@ -17,6 +17,15 @@ Page({
     result = result.map(e => {
       let subIndex = 0;
       resultTime.push([]);
+      if (e.held_with.length === 0) {
+        e.held_with = "None";
+      }
+      if (!e.note) {
+        e.note = "None";
+      }
+      if (e.reserves.length === 0) {
+        e.reserves = false;
+      }
       e.classes = e.classes.map(c => {
         resultTime[index].push([false, false, false, false, false]);
         let weekdays = c.date.weekdays;
@@ -67,8 +76,12 @@ Page({
       result,
       resultTime,
       header: {
-        code: `${app.globalData.searchResult[0].subject} ${app.globalData.searchResult[0].catalog_number}`,
-        title: `${app.globalData.searchResult[0].title}`
+        code: `${result[0].subject} ${result[0].catalog_number}`,
+        title: `${result[0].title}`,
+        note: `${result[0].note}`,
+        heldWith: `${result[0].held_with}`,
+        units: `${result[0].units}`,
+        update: `${result[0].last_updated.substring(0, 10)}`
       }
     })
     console.log(this.data)

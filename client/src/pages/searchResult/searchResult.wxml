@@ -2,7 +2,13 @@
 <view class="wrapper">
   <view class="result-header">
     <view class="header-code">{{header.code}}</view>
-    <view class="header-title">{{header.title}}</view>
+    <view class="header-text" style="font-size: 2vh;">{{header.title}}</view>
+    <view class="header-text">Units: {{header.units}}</view>
+    <view class="header-text">Held with: {{header.heldWith}}</view>
+    <view class="header-text">Note: {{header.note}}</view>
+    <view class="header-text" style="margin-bottom: 0.5vh;">
+      Last updated: {{header.update}}
+    </view>
   </view>
   <scroll-view class="result-list" scroll-x="false" scroll-y="true">
     <view class="result-list-item" wx:for="{{result}}" wx:key="{{class_number}}" wx:for-index="sectionIndex" wx:for-item="section">
@@ -18,6 +24,12 @@
         <view style="width: 40%; height: inherit; display: flex; align-items: center;">Enrollment</view>
         <view style="width: 60%; height: inherit; display: flex; align-items: center;">
           Cap: {{section.enrollment_capacity}} / Total: {{section.enrollment_total}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Waiting</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+          Cap: {{section.waiting_capacity}} / Total: {{section.waiting_total}}
         </view>
       </view>
       <view class="item-row">
@@ -60,6 +72,19 @@
           <view class="item-weekday" style="border-right: 1rpx solid rgb(16, 109, 216);">
             <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][4]}}">Fri</view>
             <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][4]}}">Fri</view>
+          </view>
+        </view>
+      </view>
+      <view class="item-row" wx:if="{{section.reserves}}" >
+        <view style="width: 100%; height: inherit; display: flex; align-items: center;">Reserves</view>
+      </view>
+      <view class="item-reserve-list" wx:if="{{section.reserves}}">
+        <view class="reserve-list-item" wx:for="{{section.reserves}}" wx:key="{{reserve_group}}" wx:for-item="group">
+          <view class="item-row">
+            <view style="width: 55%; height: inherit; display: flex; align-items: center;">{{group.reserve_group}}</view>
+            <view style="width: 45%; height: inherit; display: flex; align-items: center;">
+              Cap: {{group.enrollment_capacity}} / Total: {{group.enrollment_total}}
+            </view>
           </view>
         </view>
       </view>
