@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="wrapper">
+  <view class="logo">
+    Logo
+  </view>
+  <view class="search">
+    <input class="search-input" bindinput='searchTermUpdate' />
+    <button class="search-submit" bindtap='searchSubmit'>Search</button>
+  </view>
+</view>

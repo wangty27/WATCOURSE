@@ -1,0 +1,23 @@
+/**index.wxss**/
+.logo {
+  height: 40%;
+  width: 100vw;
+  border: 1rpx solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search {
+  height: 60%;
+  width: 100vw;
+  border: 1rpx solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-input {
+  border: 1rpx solid grey;
+  margin: 20rpx auto;
+}

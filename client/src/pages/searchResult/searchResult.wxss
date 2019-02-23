@@ -1,0 +1,87 @@
+/* pages/searchResult/searchResult.wxss */
+.result-header{
+  display: flex;
+  flex-direction: column;
+  background: #ffd54f
+}
+
+.header-code{
+  height: 5vh;
+  width: 100vw;
+  font-size: 3.5vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.header-title{
+  height: 3vh;
+  width: 100vw;
+  font-size: 1.7vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-bottom: 0.5vw solid rgb(16, 109, 216);
+  box-shadow: 0 0.5vw 0.5vw #111111;
+  z-index: 100;
+}
+
+.result-list{
+  height: 92vh;
+  width: 98vw;
+  font-size: 2.1vh;
+}
+
+.result-list-item{
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 94vw;
+  border: 0.5vw solid rgb(16, 109, 216);
+  padding: 1.5vw;
+  background: #fdfdfd;
+  box-shadow: 0 0.5vw 0.5vw #111111;
+}
+
+.item-row{
+  height: 3vh;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  /* border: 1rpx solid blue; */
+  margin-bottom: 0.5vh;
+}
+
+.item-class-list{
+  padding: 1.5vw;
+  border: 2rpx solid rgb(16, 109, 216);
+  margin-top: 0.5vh;
+}
+
+.item-weekday{
+  margin-top: 5rpx;
+  width: 20%;
+  height: inherit;
+  border: 2rpx solid rgb(16, 109, 216);
+  border-right: 0.001rpx solid transparent;
+}
+
+.item-weekday-selected{
+  width: 100%;
+  height: inherit;
+  background: rgb(16, 109, 216);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.001rpx solid rgb(16, 109, 216);
+}
+
+.item-weekday-normal{
+  width: 100%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 0.001rpx solid transparent;
+}

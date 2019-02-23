@@ -1,0 +1,69 @@
+<!--pages/searchResult/searchResult.wxml-->
+<view class="wrapper">
+  <view class="result-header">
+    <view class="header-code">{{header.code}}</view>
+    <view class="header-title">{{header.title}}</view>
+  </view>
+  <scroll-view class="result-list" scroll-x="false" scroll-y="true">
+    <view class="result-list-item" wx:for="{{result}}" wx:key="{{class_number}}" wx:for-index="sectionIndex" wx:for-item="section">
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Class Number</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{section.class_number}}</view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Section</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{section.section}}</view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Enrollment</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+          Cap: {{section.enrollment_capacity}} / Total: {{section.enrollment_total}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view style="width: 100%; height: inherit; display: flex; align-items: center;">Classes</view>
+      </view>
+      <view class="item-class-list" wx:for="{{section.classes}}" wx:key="{{location}}" wx:for-index="classIndex" wx:for-item="class">
+        <view class="item-row" wx:if="{{class.instructors}}">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Instructor</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{class.instructors[0]}}</view>
+        </view>
+        <view class="item-row" wx:if="{{class.location}}">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Location</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+            {{class.location.building}} {{class.location.room}}
+          </view>
+        </view>
+        <view class="item-row">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Time</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+            {{class.date.start_time}} - {{class.date.end_time}}
+          </view>
+        </view>
+        <view class="item-row" style="height: 4vh;">
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][0]}}">Mon</view>
+            <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][0]}}">Mon</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][1]}}">Tue</view>
+            <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][1]}}">Tue</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][2]}}">Wed</view>
+            <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][2]}}">Wed</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][3]}}">Thu</view>
+            <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][3]}}">Thu</view>
+          </view>
+          <view class="item-weekday" style="border-right: 1rpx solid rgb(16, 109, 216);">
+            <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][4]}}">Fri</view>
+            <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][4]}}">Fri</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style="width: 5vw; height: 4vh;"></view>
+  </scroll-view>
+</view>
