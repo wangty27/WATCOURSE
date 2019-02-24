@@ -2,22 +2,50 @@
 .logo {
   height: 40%;
   width: 100vw;
-  border: 1rpx solid blue;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.logo-img {
+  height: 30vh;
+  width: 30vh;
+}
+
 .search {
   height: 60%;
   width: 100vw;
-  border: 1rpx solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .search-input {
+  width: 90%;
+  height: 70%;
   border: 1rpx solid grey;
-  margin: 20rpx auto;
+  border-radius: 10rpx;
+  background: white;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  font-size: 90%;
+}
+
+.search-row {
+  height: 8vh;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-button {
+  width: 40%;
+  height: 6vh;
+  border: 1rpx solid grey;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

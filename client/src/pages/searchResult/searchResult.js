@@ -81,10 +81,10 @@ Page({
         note: `${result[0].note}`,
         heldWith: `${result[0].held_with}`,
         units: `${result[0].units}`,
-        update: `${result[0].last_updated.substring(0, 10)}`
+        update: `${result[0].last_updated.substring(0, 10)}`,
+        term: app.globalData.selectedTerm
       }
     })
-    console.log(this.data)
   },
 
   onReachBottom: function () {

@@ -30,7 +30,7 @@
 
 
 .result-list{
-  height: 84.5vh;
+  height: 82vh;
   width: 98vw;
   font-size: 2.1vh;
 }

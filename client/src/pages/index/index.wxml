@@ -1,11 +1,22 @@
 <!--index.wxml-->
 <view class="wrapper">
   <view class="logo">
-    Logo
+    <image src="../../images/logo.png" class="logo-img" />
   </view>
   <view class="search">
-    <input class="search-input" bindinput='searchTermUpdate' />
+    <view class="search-row">
+      <input class="search-input" bindinput='searchTermUpdate' value="{{searchTerm}}" placeholder="Course Number (i.e. CS136)" />
+    </view>
+    <view class="search-row">
+      <picker bindchange="selectTermChange" value="{{selectedTermIndex}}" range="{{termTextList}}" class="search-input" style="display: flex; align-items: center; justify-content: center;">
+        {{termTextList[selectedTermIndex]}}
+      </picker>
+    </view>
     <view wx:if="{{searchError}}" style="color: red;">Error</view>
-    <button class="search-submit" bindtap='searchSubmit'>Search</button>
+    <view class="search-row">
+      <button class="search-button" bindtap='searchSubmit'>Search</button>
+      <button class="search-button" bindtap='searchClear'>Clear</button>
+    </view>
+    
   </view>
 </view>

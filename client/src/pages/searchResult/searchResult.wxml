@@ -3,6 +3,7 @@
   <view class="result-header">
     <view class="header-code">{{header.code}}</view>
     <view class="header-text" style="font-size: 2vh;">{{header.title}}</view>
+    <view class="header-text">Term: {{header.term}}</view>
     <view class="header-text">Units: {{header.units}}</view>
     <view class="header-text">Held with: {{header.heldWith}}</view>
     <view class="header-text">Note: {{header.note}}</view>
