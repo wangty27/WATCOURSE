@@ -21,7 +21,7 @@ Page({
         e.held_with = "None";
       }
       if (!e.note) {
-        e.note = "None";
+        e.note = false;
       }
       if (e.reserves.length === 0) {
         e.reserves = false;

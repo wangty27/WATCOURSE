@@ -28,7 +28,7 @@
   background: white;
   padding-left: 15rpx;
   padding-right: 15rpx;
-  font-size: 90%;
+  font-size: 95%;
 }
 
 .search-row {

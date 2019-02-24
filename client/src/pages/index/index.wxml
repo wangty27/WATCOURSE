@@ -12,7 +12,7 @@
         {{termTextList[selectedTermIndex]}}
       </picker>
     </view>
-    <view wx:if="{{searchError}}" style="color: red;">Error</view>
+    <view wx:if="{{searchError}}" style="color: red; font-size: 2vh;">Error, please try again.</view>
     <view class="search-row">
       <button class="search-button" bindtap='searchSubmit'>Search</button>
       <button class="search-button" bindtap='searchClear'>Clear</button>

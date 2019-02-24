@@ -6,7 +6,6 @@
     <view class="header-text">Term: {{header.term}}</view>
     <view class="header-text">Units: {{header.units}}</view>
     <view class="header-text">Held with: {{header.heldWith}}</view>
-    <view class="header-text">Note: {{header.note}}</view>
     <view class="header-text" style="margin-bottom: 0.5vh;">
       Last updated: {{header.update}}
     </view>
@@ -88,6 +87,9 @@
             </view>
           </view>
         </view>
+      </view>
+      <view class="item-note" wx:if="{{section.note}}">
+        Note: {{section.note}}
       </view>
     </view>
     <view style="width: 5vw; height: 4vh;"></view>

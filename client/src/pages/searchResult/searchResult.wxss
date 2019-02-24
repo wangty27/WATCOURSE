@@ -30,7 +30,7 @@
 
 
 .result-list{
-  height: 82vh;
+  height: 84vh;
   width: 98vw;
   font-size: 2.1vh;
 }
@@ -51,6 +51,12 @@
   display: flex;
   flex-direction: row;
   /* border: 1rpx solid blue; */
+  margin-top: 0.25vh;
+  margin-bottom: 0.25vh;
+}
+
+.item-note{
+  width: inherit;
   margin-top: 0.25vh;
   margin-bottom: 0.25vh;
 }
@@ -90,7 +96,7 @@
   border-right: 0.001rpx solid transparent;
 }
 
-.item-reserve-list {
+.item-reserve-list{
   display: flex;
   flex-direction: column;
   padding: 1.5vw;

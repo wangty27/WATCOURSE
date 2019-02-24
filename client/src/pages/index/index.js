@@ -11,8 +11,26 @@ Page({
     selectedTermIndex: 3
   },
 
-  onLoad: function () {
+  onShow: function () {
     app.globalData.selectedTerm = this.data.termTextList[this.data.selectedTermIndex];
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth() + 1;
+    let index = 0;
+    index += (year - 2018) * 3;
+    if (month >= 5 && month <= 7) {
+      index += 1;
+    } else if (month >= 9 && month <= 11) {
+      index += 2;
+    } else if (month == 4) {
+      index += 1;
+    } else if (month == 8) {
+      index += 2;
+    } else if (month == 12) {
+      index += 3;
+    }
+    this.setData({
+      selectedTermIndex: index
+    })
   },
 
   searchTermUpdate: function(e) {
@@ -33,12 +51,15 @@ Page({
     }).then(function (res) {
       if (!res.result.error) {
         app.globalData.searchResult = res.result;
-        _this.setData({
-          searchError: false,
-          searchTerm: ''
-        })
         wx.navigateTo({
           url: '../searchResult/searchResult',
+          complete: () => {
+            app.globalData.searchTerm = '';
+            _this.setData({
+              searchError: false,
+              searchTerm: ''
+            })
+          }
         })
       } else {
         _this.setData({
@@ -46,12 +67,10 @@ Page({
         })
       }
     });
-    // wx.navigateTo({
-    //   url: '../searchResult/searchResult',
-    // })
   },
 
-  searchClear: function() {
+  searchClear: function () {
+    app.globalData.searchTerm = '';
     this.setData({
       searchTerm: "",
       searchError: false,
@@ -63,5 +82,13 @@ Page({
     this.setData({
       selectedTermIndex: e.detail.value
     })
+  },
+
+  onShareAppMessage: function() {
+    return {
+      title: 'UW选课助手',
+      desc: '查询实时课程信息，选课不再担忧',
+      path: '/pages/index/index'
+    }
   }
 })

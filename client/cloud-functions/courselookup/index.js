@@ -10,7 +10,7 @@ cloud.init()
 exports.main = async (event, context) => {
   // const wxContext = cloud.getWXContext();
   var subject = event.searchTerm.replace(/[0-9]/g, '').replace(/\s/g, '');
-  var course = event.searchTerm.replace(/^\D+/g, '');
+  var course = event.searchTerm.replace(/^\D+/g, '').replace(/\s/g, '');
   var term = event.termCode;
   if (subject === '') subject = 'dummy';
   if (course === '') course = 'dummy';
