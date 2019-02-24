@@ -1,3 +1,4 @@
 server/
 *.psd
 APIKEY.js
+.DS_Store
