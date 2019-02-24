@@ -1,12 +1,29 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/searchResult/searchResult"
+    "pages/searchResult/searchResult",
+    "pages/bookmark/bookmark"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#ffd54f",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "WATCOURSE",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "color": "#666666",
+    "selectedColor": "#000000",
+    "borderStyle": "white",
+    "backgroundColor": "#ffd54f",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "查询"
+      },
+      {
+        "pagePath": "pages/bookmark/bookmark",
+        "text": "收藏"
+      }
+    ]
   }
 }
