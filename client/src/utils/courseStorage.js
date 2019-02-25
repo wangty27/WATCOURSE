@@ -27,6 +27,38 @@ const saveCourse = course => {
   });
 };
 
+const saveCourseList = courseList => {
+  return new Promise((resolve, reject) => {
+    wx.getStorage({
+      key: 'courseList',
+      success: res => {
+        let newCourseList = res.data;
+        for (course of courseList) {
+          newCourseList[course.class_number] = course;
+        }
+        wx.setStorage({
+          key: 'courseList',
+          data: newCourseList,
+          success: () => {resolve(true);},
+          fail: () => {resolve(false);}
+        });
+      },
+      fail: () => {
+        let newCourseList = {};
+        for (course of courseList) {
+          newCourseList[course.class_number] = course;
+        }
+        wx.setStorage({
+          key: 'courseList',
+          data: newCourseList,
+          success: () => {resolve(true);},
+          fail: () => {resolve(false);}
+        })
+      }
+    });
+  });
+}
+
 const getCourseList = () => {
   return new Promise((resolve, reject) => {
     wx.getStorage({
@@ -58,6 +90,7 @@ const removeCourse = (courseNumber, callback) => {
 
 module.exports = {
   saveCourse,
+  saveCourseList,
   getCourseList,
   removeCourse
 }

@@ -43,7 +43,6 @@ Page({
   searchSubmit: function() {
     let _this = this;
     wx.showLoading({
-      title: 'Loading...',
       mask: true
     })
     wx.cloud.callFunction({
@@ -73,6 +72,9 @@ Page({
         })
       }
     });
+    // wx.navigateTo({
+    //   url: '../searchResult/searchResult',
+    // })
   },
 
   searchClear: function () {

@@ -1,7 +1,13 @@
 <!--pages/bookmark/bookmark.wxml-->
 <view class="wrapper">
   <view class="result-header">
-    <view class="header">我的收藏</view>
+    <view class="header">
+      <view class="header-side"></view>
+      <view class="header-text">我的收藏</view>
+      <view class="header-side" bindtap="refreshCourses" hover-class="item-hover" hover-stay-time="100">
+        <image class="header-refresh" src="../../images/refresh.png" />
+      </view>
+    </view>
   </view>
   <view class="bookmark-tutorial" wx:if="{{empty}}">
     <image class="bookmark-tutorial-image" src="../../images/bookmark-tutorial.png" />
@@ -9,14 +15,19 @@
   <scroll-view class="result-list" scroll-x="false" scroll-y="true" wx:if="{{!empty}}">
     <view class="result-list-item" wx:for="{{courseList}}" wx:key="{{class_number}}" wx:for-index="sectionIndex" wx:for-item="section">
       <view class="item-row">
-        <view style="width: 100%; height: inherit; display: flex; justify-content: center; align-items: center; font-size: 3vh; font-weight: bold;">
+        <view style="width: 10%; height: inherit; display: flex; align-items: center;"></view>
+        <view style="width: 80%; height: inherit; display: flex; justify-content: center; align-items: center; font-size: 3vh; font-weight: bold;">
           {{section.subject}} {{section.catalog_number}}
         </view>
+        <view style="width: 10%; height: inherit; display: flex; align-items: center; justify-content: center;" data-index="{{sectionIndex}}" bindtap="removeCourse" hover-class="item-hover" hover-stay-time="100"><image src="../../images/delete.png" class="item-remove" /></view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Term</view>
+        <view style="width: 50%; height: inherit; display: flex; align-items: center;">{{section.termText}}</view>
       </view>
       <view class="item-row">
         <view style="width: 40%; height: inherit; display: flex; align-items: center;">Class Number</view>
         <view style="width: 50%; height: inherit; display: flex; align-items: center;">{{section.class_number}}</view>
-        
       </view>
       <view class="item-row">
         <view style="width: 40%; height: inherit; display: flex; align-items: center;">Section</view>
@@ -96,10 +107,9 @@
       <view class="item-row">
         <view style="width: 100%; height: inherit; display: flex; align-items: center;">Last updated: {{section.last_updated}}</view>
       </view>
-      <view class="item-button-group">
-        <button class="item-button" hover-class="item-button-hover" hover-stay-time="100" data-index="{{sectionIndex}}" bindtap="refreshCourse">刷新</button>
+      <!-- <view class="item-button-group">
         <button class="item-button" hover-class="item-button-hover" hover-stay-time="100" style="color: red; border: 2rpx solid red;" data-index="{{sectionIndex}}" bindtap="removeCourse">取消收藏</button>
-      </view>
+      </view> -->
     </view>
     <view style="width: 5vw; height: 2vh;"></view>
   </scroll-view>
