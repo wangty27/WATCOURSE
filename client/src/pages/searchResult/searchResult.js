@@ -1,5 +1,6 @@
 const app = getApp();
 const CourseStorage = require('../../utils/courseStorage');
+const Util = require('../../utils/util');
 
 Page({
 
@@ -19,7 +20,7 @@ Page({
     var index = 0;
     var storedCourseList = await CourseStorage.getCourseList();
     result = result.map(e => {
-      bookmarkList.push(storedCourseList.hasOwnProperty(e.class_number));
+      bookmarkList.push(storedCourseList.hasOwnProperty(`${e.term}${e.class_number}`));
       let subIndex = 0;
       resultTime.push([]);
       if (e.held_with.length === 0) {
@@ -87,7 +88,7 @@ Page({
         note: `${result[0].note}`,
         heldWith: `${result[0].held_with}`,
         units: `${result[0].units}`,
-        update: `${result[0].last_updated.substring(0, 10)}`,
+        update: `${Util.formatTime(new Date(Date.parse(result[0].last_updated)))}`,
         term: app.globalData.selectedTerm
       }
     });

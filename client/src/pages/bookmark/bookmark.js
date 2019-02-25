@@ -1,5 +1,6 @@
 // pages/bookmark/bookmark.js
 const CourseStorage = require('../../utils/courseStorage');
+const Util = require('../../utils/util');
 
 Page({
   data: {
@@ -29,7 +30,7 @@ Page({
         case '9': termMonth = 'Fall'; break;
       }
       e.termText = `${termMonth} 20${termYear}`;
-      e.last_updated = e.last_updated.substring(0, 10);
+      e.last_updated = Util.formatTime(new Date(Date.parse(e.last_updated)));
       e.classes = e.classes.map(c => {
         courseListTime[index].push([false, false, false, false, false]);
         let weekdays = c.date.weekdays;
@@ -91,10 +92,6 @@ Page({
     }
   },
 
-  refreshCourse: function () {
-    
-  },
-
   removeCourse: function (e) {
     let _this = this;
     const index = e.currentTarget.dataset.index;
@@ -104,7 +101,7 @@ Page({
       confirmColor: '#ff0000',
       success: async res => {
         if (res.confirm) {
-          var deleted = await CourseStorage.removeCourse(this.data.courseList[index].class_number);
+          var deleted = await CourseStorage.removeCourse(this.data.courseList[index]);
           if (deleted) {
             var newCourseList = this.data.courseList;
             var newCourseListTime = this.data.courseListTime;
@@ -176,7 +173,7 @@ Page({
           case '9': termMonth = 'Fall'; break;
         }
         e.termText = `${termMonth} 20${termYear}`;
-        e.last_updated = e.last_updated.substring(0, 10);
+        e.last_updated = Util.formatTime(new Date(Date.parse(e.last_updated)));
         e.classes = e.classes.map(c => {
           courseListTime[index].push([false, false, false, false, false]);
           let weekdays = c.date.weekdays;

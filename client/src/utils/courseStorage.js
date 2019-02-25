@@ -3,9 +3,9 @@ const saveCourse = course => {
     wx.getStorage({
       key: 'courseList',
       success: res => {
-        let courseNumber = course.class_number;
+        let key = `${course.term}${course.class_number}`;
         let newCourseList = res.data;
-        newCourseList[courseNumber] = course;
+        newCourseList[key] = course;
         wx.setStorage({
           key: 'courseList',
           data: newCourseList,
@@ -14,8 +14,8 @@ const saveCourse = course => {
         });
       },
       fail: () => {
-        let courseNumber = course.class_number;
-        let newCourseList = {[courseNumber]: course};
+        let key = `${course.term}${course.class_number}`;
+        let newCourseList = {[key]: course};
         wx.setStorage({
           key: 'courseList',
           data: newCourseList,
@@ -34,7 +34,8 @@ const saveCourseList = courseList => {
       success: res => {
         let newCourseList = res.data;
         for (course of courseList) {
-          newCourseList[course.class_number] = course;
+          let key = `${course.term}${course.class_number}`;
+          newCourseList[key] = course;
         }
         wx.setStorage({
           key: 'courseList',
@@ -46,7 +47,8 @@ const saveCourseList = courseList => {
       fail: () => {
         let newCourseList = {};
         for (course of courseList) {
-          newCourseList[course.class_number] = course;
+          let key = `${course.term}${course.class_number}`;
+          newCourseList[key] = course;
         }
         wx.setStorage({
           key: 'courseList',
@@ -69,13 +71,14 @@ const getCourseList = () => {
   });
 };
 
-const removeCourse = (courseNumber, callback) => {
+const removeCourse = (course, callback) => {
   return new Promise((resolve, reject) => {
     wx.getStorage({
       key: 'courseList',
       success: res => {
         let newCourseList = res.data;
-        delete newCourseList[courseNumber];
+        let key = `${course.term}${course.class_number}`;
+        delete newCourseList[key];
         wx.setStorage({
           key: 'courseList',
           data: newCourseList,
