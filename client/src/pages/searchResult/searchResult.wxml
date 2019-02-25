@@ -14,7 +14,11 @@
     <view class="result-list-item" wx:for="{{result}}" wx:key="{{class_number}}" wx:for-index="sectionIndex" wx:for-item="section">
       <view class="item-row">
         <view style="width: 40%; height: inherit; display: flex; align-items: center;">Class Number</view>
-        <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{section.class_number}}</view>
+        <view style="width: 50%; height: inherit; display: flex; align-items: center;">{{section.class_number}}</view>
+        <view data-course="{{section}}" data-index="{{sectionIndex}}" class="item-bookmark" bindtap="toggleBookmark">
+          <image src="../../images/bookmarked.png" class="item-bookmark-image" wx:if="{{bookmarkList[sectionIndex]}}" />
+          <image src="../../images/bookmark-active.png" class="item-bookmark-image" wx:if="{{!bookmarkList[sectionIndex]}}" />
+        </view>
       </view>
       <view class="item-row">
         <view style="width: 40%; height: inherit; display: flex; align-items: center;">Section</view>
@@ -69,7 +73,7 @@
             <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][3]}}">Thu</view>
             <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][3]}}">Thu</view>
           </view>
-          <view class="item-weekday" style="border-right: 1rpx solid rgb(16, 109, 216);">
+          <view class="item-weekday" style="border-right: 2rpx solid rgb(16, 109, 216);">
             <view class="item-weekday-selected" wx:if="{{resultTime[sectionIndex][classIndex][4]}}">Fri</view>
             <view class="item-weekday-normal" wx:if="{{!resultTime[sectionIndex][classIndex][4]}}">Fri</view>
           </view>

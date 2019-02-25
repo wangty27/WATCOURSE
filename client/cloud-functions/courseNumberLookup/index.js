@@ -2,7 +2,7 @@
 const cloud = require('wx-server-sdk');
 const requestP = require('request-promise');
 
-const APIKEY = require('../APIKEY');
+const APIKEY = require('./APIKEY');
 
 cloud.init()
 

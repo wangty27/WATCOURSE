@@ -11,18 +11,22 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar":{
-    "color": "#666666",
+    "color": "#aaaaaa",
     "selectedColor": "#000000",
     "borderStyle": "white",
     "backgroundColor": "#ffd54f",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "查询"
+        "text": "查询",
+        "iconPath": "./images/search.png",
+        "selectedIconPath": "./images/search-active.png"
       },
       {
         "pagePath": "pages/bookmark/bookmark",
-        "text": "收藏"
+        "text": "收藏",
+        "iconPath": "./images/bookmark.png",
+        "selectedIconPath": "./images/bookmark-active.png"
       }
     ]
   }

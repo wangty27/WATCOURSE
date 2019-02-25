@@ -1,4 +1,5 @@
 const app = getApp();
+const CourseStorage = require('../../utils/courseStorage');
 
 Page({
 
@@ -10,11 +11,15 @@ Page({
     title: null,
     resultTime: null
   },
-  onLoad: function (options) {
-    let result = app.globalData.searchResult;
-    let resultTime = [];
-    let index = 0;
+
+  onShow: async function (options) {
+    var result = app.globalData.searchResult;
+    var resultTime = [];
+    var bookmarkList = [];
+    var index = 0;
+    var storedCourseList = await CourseStorage.getCourseList();
     result = result.map(e => {
+      bookmarkList.push(storedCourseList.hasOwnProperty(e.class_number));
       let subIndex = 0;
       resultTime.push([]);
       if (e.held_with.length === 0) {
@@ -75,6 +80,7 @@ Page({
     this.setData({
       result,
       resultTime,
+      bookmarkList,
       header: {
         code: `${result[0].subject} ${result[0].catalog_number}`,
         title: `${result[0].title}`,
@@ -84,19 +90,34 @@ Page({
         update: `${result[0].last_updated.substring(0, 10)}`,
         term: app.globalData.selectedTerm
       }
-    })
+    });
   },
 
-  onReachBottom: function () {
-
-  },
-
-  onShareAppMessage: function () {
-
-  },
-
-  checkWeekday: function (weekdays, day) {
-    console.log(weekdays.includes(day));
-    return weekdays.includes(day);
+  toggleBookmark: async function(e) {
+    let _this = this;
+    const {course, index} = e.currentTarget.dataset;
+    let newBookmarkList = this.data.bookmarkList;
+    let bookmarked = newBookmarkList[index];
+    if (!bookmarked) {
+      let success = await CourseStorage.saveCourse(course);
+      if (success) {
+        newBookmarkList[index] = !newBookmarkList[index];
+        _this.setData({
+          bookmarkList: newBookmarkList
+        })
+      } else {
+        console.log('save fail');
+      }
+    } else {
+      let success = await CourseStorage.removeCourse(course.class_number);
+      if (success) {
+        newBookmarkList[index] = !newBookmarkList[index];
+        _this.setData({
+          bookmarkList: newBookmarkList
+        })
+      } else {
+        console.log('remove fail');
+      }
+    }
   }
 })

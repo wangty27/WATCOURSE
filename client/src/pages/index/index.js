@@ -42,18 +42,23 @@ Page({
 
   searchSubmit: function() {
     let _this = this;
+    wx.showLoading({
+      title: 'Loading...',
+      mask: true
+    })
     wx.cloud.callFunction({
-      name: 'courselookup',
+      name: 'courseNameLookup',
       data: {
         searchTerm: app.globalData.searchTerm,
         termCode: this.data.termCodeList[this.data.selectedTermIndex]
       }
-    }).then(function (res) {
+    }).then(res => {
       if (!res.result.error) {
         app.globalData.searchResult = res.result;
         wx.navigateTo({
           url: '../searchResult/searchResult',
           complete: () => {
+            wx.hideLoading();
             app.globalData.searchTerm = '';
             _this.setData({
               searchError: false,
@@ -62,6 +67,7 @@ Page({
           }
         })
       } else {
+        wx.hideLoading();
         _this.setData({
           searchError: true
         })
@@ -87,8 +93,8 @@ Page({
   onShareAppMessage: function() {
     return {
       title: 'UW选课助手',
-      desc: '查询实时课程信息，选课不再担忧',
-      path: '/pages/index/index'
+      path: '/pages/index/index',
+      imageUrl: '../../images/share.png'
     }
   }
 })

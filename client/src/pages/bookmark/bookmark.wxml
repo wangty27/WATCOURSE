@@ -1,2 +1,106 @@
 <!--pages/bookmark/bookmark.wxml-->
-<text>pages/bookmark/bookmark.wxml</text>
+<view class="wrapper">
+  <view class="result-header">
+    <view class="header">我的收藏</view>
+  </view>
+  <view class="bookmark-tutorial" wx:if="{{empty}}">
+    <image class="bookmark-tutorial-image" src="../../images/bookmark-tutorial.png" />
+  </view>
+  <scroll-view class="result-list" scroll-x="false" scroll-y="true" wx:if="{{!empty}}">
+    <view class="result-list-item" wx:for="{{courseList}}" wx:key="{{class_number}}" wx:for-index="sectionIndex" wx:for-item="section">
+      <view class="item-row">
+        <view style="width: 100%; height: inherit; display: flex; justify-content: center; align-items: center; font-size: 3vh; font-weight: bold;">
+          {{section.subject}} {{section.catalog_number}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Class Number</view>
+        <view style="width: 50%; height: inherit; display: flex; align-items: center;">{{section.class_number}}</view>
+        
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Section</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{section.section}}</view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Enrollment</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+          Cap: {{section.enrollment_capacity}} / Total: {{section.enrollment_total}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view style="width: 40%; height: inherit; display: flex; align-items: center;">Waiting</view>
+        <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+          Cap: {{section.waiting_capacity}} / Total: {{section.waiting_total}}
+        </view>
+      </view>
+      <view class="item-row">
+        <view style="width: 100%; height: inherit; display: flex; align-items: center;">Classes</view>
+      </view>
+      <view class="item-class-list" wx:for="{{section.classes}}" wx:key="{{location}}" wx:for-index="classIndex" wx:for-item="class">
+        <view class="item-row" wx:if="{{class.instructors}}">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Instructor</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{class.instructors[0]}}</view>
+        </view>
+        <view class="item-row" wx:if="{{class.location}}">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Location</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+            {{class.location.building}} {{class.location.room}}
+          </view>
+        </view>
+        <view class="item-row">
+          <view style="width: 40%; height: inherit; display: flex; align-items: center;">Time</view>
+          <view style="width: 60%; height: inherit; display: flex; align-items: center;">
+            {{class.date.start_time}} - {{class.date.end_time}}
+          </view>
+        </view>
+        <view class="item-row" style="height: 4vh;">
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{courseListTime[sectionIndex][classIndex][0]}}">Mon</view>
+            <view class="item-weekday-normal" wx:if="{{!courseListTime[sectionIndex][classIndex][0]}}">Mon</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{courseListTime[sectionIndex][classIndex][1]}}">Tue</view>
+            <view class="item-weekday-normal" wx:if="{{!courseListTime[sectionIndex][classIndex][1]}}">Tue</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{courseListTime[sectionIndex][classIndex][2]}}">Wed</view>
+            <view class="item-weekday-normal" wx:if="{{!courseListTime[sectionIndex][classIndex][2]}}">Wed</view>
+          </view>
+          <view class="item-weekday" style="">
+            <view class="item-weekday-selected" wx:if="{{courseListTime[sectionIndex][classIndex][3]}}">Thu</view>
+            <view class="item-weekday-normal" wx:if="{{!courseListTime[sectionIndex][classIndex][3]}}">Thu</view>
+          </view>
+          <view class="item-weekday" style="border-right: 2rpx solid rgb(16, 109, 216);">
+            <view class="item-weekday-selected" wx:if="{{courseListTime[sectionIndex][classIndex][4]}}">Fri</view>
+            <view class="item-weekday-normal" wx:if="{{!courseListTime[sectionIndex][classIndex][4]}}">Fri</view>
+          </view>
+        </view>
+      </view>
+      <view class="item-row" wx:if="{{section.reserves}}" >
+        <view style="width: 100%; height: inherit; display: flex; align-items: center;">Reserves</view>
+      </view>
+      <view class="item-reserve-list" wx:if="{{section.reserves}}">
+        <view class="reserve-list-item" wx:for="{{section.reserves}}" wx:key="{{reserve_group}}" wx:for-item="group">
+          <view class="item-row">
+            <view style="width: 55%; height: inherit; display: flex; align-items: center;">{{group.reserve_group}}</view>
+            <view style="width: 45%; height: inherit; display: flex; align-items: center;">
+              Cap: {{group.enrollment_capacity}} / Total: {{group.enrollment_total}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="item-note" wx:if="{{section.note}}">
+        Note: {{section.note}}
+      </view>
+      <view class="item-row">
+        <view style="width: 100%; height: inherit; display: flex; align-items: center;">Last updated: {{section.last_updated}}</view>
+      </view>
+      <view class="item-button-group">
+        <button class="item-button" hover-class="item-button-hover" hover-stay-time="100" data-index="{{sectionIndex}}" bindtap="refreshCourse">刷新</button>
+        <button class="item-button" hover-class="item-button-hover" hover-stay-time="100" style="color: red; border: 2rpx solid red;" data-index="{{sectionIndex}}" bindtap="removeCourse">取消收藏</button>
+      </view>
+    </view>
+    <view style="width: 5vw; height: 2vh;"></view>
+  </scroll-view>
+</view>

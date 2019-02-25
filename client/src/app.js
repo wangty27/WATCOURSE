@@ -1,7 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
-    wx.cloud.init()
+    wx.cloud.init();
   },
   globalData: {
     searchTerm: '',
