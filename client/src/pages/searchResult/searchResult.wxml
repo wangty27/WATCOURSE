@@ -85,8 +85,8 @@
       <view class="item-reserve-list" wx:if="{{section.reserves}}">
         <view class="reserve-list-item" wx:for="{{section.reserves}}" wx:key="{{reserve_group}}" wx:for-item="group">
           <view class="item-row">
-            <view style="width: 55%; height: inherit; display: flex; align-items: center;">{{group.reserve_group}}</view>
-            <view style="width: 45%; height: inherit; display: flex; align-items: center;">
+            <view style="width: 60%; height: inherit; display: flex; align-items: center;">{{group.reserve_group}}</view>
+            <view style="width: 40%; height: inherit; display: flex; align-items: center;">
               Cap: {{group.enrollment_capacity}} / Total: {{group.enrollment_total}}
             </view>
           </view>
