@@ -17,15 +17,15 @@ Page({
     let month = new Date().getMonth() + 1;
     let index = 0;
     index += (year - 2018) * 3;
-    if (month >= 5 && month <= 7) {
+    if (month >= 5 && month < 7) {
       index += 1;
     } else if (month >= 9 && month <= 11) {
       index += 2;
-    } else if (month == 4) {
+    } else if (month == 3 || month == 4) {
       index += 1;
-    } else if (month == 8) {
+    } else if (month == 7 || month == 8) {
       index += 2;
-    } else if (month == 12) {
+    } else if (month == 11 || month == 12) {
       index += 3;
     }
     this.setData({
